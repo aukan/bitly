@@ -6,8 +6,26 @@ module Bitly
   API_URL     = 'http://api.bit.ly/'
   API_VERSION = '2.0.1'
 
-  def self.new(login, api_key)
+  def self.new(login = nil, api_key = nil)
+    unless Bitly.config.nil?
+      login ||= Bitly.config['username']
+      api_key ||= Bitly.config['api_key']
+    end
     Bitly::Client.new(login,api_key)
+  end
+  
+  # Loads configuration from YAML file
+  def self.load_configuration(file)
+    @@config = YAML.load_file(file)[RAILS_ENV]
+  end
+  
+  # returns config variable
+  def self.config
+    if defined? @@config
+      @@config
+    else
+      nil
+    end
   end
 
   class Client
