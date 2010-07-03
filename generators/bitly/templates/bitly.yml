@@ -1,0 +1,16 @@
+# Bitly configuration (http://bit.ly)
+# Signup for an account.
+# You can get api_key from http://bit.ly/account/
+
+development:
+  username: 
+  api_key:
+  
+test:
+  username:
+  api_key:
+  
+production:
+  username:
+  api_key:
+  
